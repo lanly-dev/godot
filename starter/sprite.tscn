@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh7n345rj8uhk"]
+
+[ext_resource type="Texture2D" uid="uid://b4cfn33jxvyoy" path="res://icon.svg" id="1_ot5uy"]
+
+[sub_resource type="GDScript" id="GDScript_xg5lu"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	rotation += angular_speed * delta
+
+	var velocity = Vector2.UP.rotated(rotation) * speed
+
+	position += velocity * delta
+
+func _init():
+	print(\"Hello, world!\")
+
+var speed = 400
+var angular_speed = PI
+"
+
+[node name="Sprite" type="Sprite2D"]
+position = Vector2(536.213, 293.139)
+texture = ExtResource("1_ot5uy")
+script = SubResource("GDScript_xg5lu")
