@@ -1,32 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh7n345rj8uhk"]
 
-[ext_resource type="Texture2D" uid="uid://b4cfn33jxvyoy" path="res://icon.svg" id="1_ot5uy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_p42y0"]
+size = Vector3(60, 2, 60)
 
-[sub_resource type="GDScript" id="GDScript_xg5lu"]
-script/source = "extends Sprite2D
+[sub_resource type="BoxMesh" id="BoxMesh_oseim"]
+size = Vector3(60, 2, 60)
 
+[node name="Main" type="Node"]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_p42y0")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	rotation += angular_speed * delta
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_oseim")
 
-	var velocity = Vector2.UP.rotated(rotation) * speed
-
-	position += velocity * delta
-
-func _init():
-	print(\"Hello, world!\")
-
-var speed = 400
-var angular_speed = PI
-"
-
-[node name="Sprite" type="Sprite2D"]
-position = Vector2(536.213, 293.139)
-texture = ExtResource("1_ot5uy")
-script = SubResource("GDScript_xg5lu")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19, 0)
