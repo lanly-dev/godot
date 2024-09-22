@@ -29,6 +29,8 @@ mob_scene = ExtResource("2_uaklu")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_p42y0")
@@ -40,6 +42,7 @@ mesh = SubResource("BoxMesh_oseim")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 18, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_itvlx")]
+collision_mask = 6
 
 [node name="Marker3D" type="Marker3D" parent="."]
 
