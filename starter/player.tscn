@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://djb1v78rk5sq5"]
+[gd_scene load_steps=5 format=3 uid="uid://djb1v78rk5sq5"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5qdsi"]
 [ext_resource type="PackedScene" uid="uid://da7ah81382iej" path="res://art/player.glb" id="1_dwh4y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7ghfj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eek63"]
+height = 0.576832
+radius = 1.14798
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_5qdsi")
@@ -15,3 +19,14 @@ script = ExtResource("1_5qdsi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
 shape = SubResource("SphereShape3D_7ghfj")
+
+[node name="MobDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.365701, 0)
+shape = SubResource("CylinderShape3D_eek63")
+
+[connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
